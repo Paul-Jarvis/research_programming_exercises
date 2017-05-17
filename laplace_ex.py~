@@ -1,0 +1,17 @@
+import numpy
+
+def Laplacian(indata, result, d):
+
+
+    return 0
+
+
+
+
+xsize = 20
+ysize = 20
+zsize = 20
+
+data = numpy.random.ran(xsize, ysize, zsize)
+
+print(data)
