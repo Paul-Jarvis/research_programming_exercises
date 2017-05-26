@@ -1,14 +1,52 @@
 import numpy
+import matplotlib
+import matplotlib.pyplot
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.animation as animation
+import pylab
 
-def rand_walk(p1x, p1y, p2x, p2y):
-    person1 = numpy.array([p1x, p1y])
-    person2 = numpy.array([p2x, p2y])
-
+def step_forward(person1, person2):
     person1 = move(person1)
 
     person2 = move(person2)
     
-    print(person1)
+
+def rand_walk(p1x, p1y, p2x, p2y):
+
+    fig = matplotlib.pyplot.figure()
+
+    person1 = numpy.array([p1x, p1y])
+    person2 = numpy.array([p2x, p2y])
+
+    x_coord = numpy.array([p1x, p2x])
+    y_coord = numpy.array([p1y, p2y])
+
+    matplotlib.pyplot.xlim(1, 10)
+    matplotlib.pyplot.ylim(1, 10)
+
+#    matplotlib.pyplot.plot(x_coord, y_coord)
+    pylab.plot(x_coord, y_coord)
+
+    #ax = fig.add_subplot()
+    #ax.grid()
+
+    #ax.set_ylim[1:10]
+    #ax.set_xlim[1:10]
+
+    impact_cond = 0
+
+    n_its = 0
+
+    while impact_cond == 0:
+        step_forward(person1, person2)
+
+        n_its = n_its + 1
+    
+        if (person1 == person2).all():
+
+            print("Collision occured after {its} steps.".format(its = n_its))
+
+            impact_cond = 1
 
     return "Collision occured"
 
@@ -42,4 +80,4 @@ def move(person):
 
     return person
 
-rand_walk(1, 1, 10, 10)
+rand_walk(1, 1, 5, 5)
