@@ -1,0 +1,27 @@
+import mpi4py
+from mpi4py import MPI
+import numpy
+
+comm = MPI.COMM_WORLD
+
+size = comm.Get_size()
+rank = comm.Get_rank()
+
+if rank == 0:
+    for i in range(1, size):
+        task = comm.isend('ping', dest = 1, tag = 10)
+        task.wait()
+
+        response = numpy.empty([1], dtype = str)
+
+        task2 = comm.irecv(response[0], 1, tag = 11)
+        print(task2)
+
+else:
+    task = comm.irecv(source = 0, tag = 10)
+    print(task)
+
+    task2 = comm.isend('pong', dest = 0, tag = 11)
+    task2.wait()
+
+    

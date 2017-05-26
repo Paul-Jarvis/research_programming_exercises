@@ -8,7 +8,8 @@ def Laplacian(indata, result, d):
             for k in range(d, indata.shape[2] - d):
                 result[i, j, k] = (indata[i - 1, j, k] + indata[i + 1, j, k] + \
                                    indata[i, j - 1, k] + indata[i, j + 1, k] + \
-                                   indata[i, j, k - 1] + indata[i, j, k + 1] - 6.0 * indata[i, j, k]) / (d * d)
+                                   indata[i, j, k - 1] + indata[i, j, k + 1] - \
+                                   6.0 * indata[i, j, k]) / (d * d)
 
 
     return 0
